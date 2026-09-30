@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f8">
+  <title>Analysis &amp; QA Orchestrator - презентация</title>
+  <link rel="stylesheet" href="css/presentation.css">
+</head>
+<body>
+  <div class="presentation" id="presentation">
+    <header class="topbar">
+      <button class="brand" type="button" data-go="0" aria-label="К первому экрану">
+        <img src="assets/logo_orch.png" alt="">
+        <span>Analysis &amp; QA Orchestrator</span>
+      </button>
+      <nav class="top-actions" aria-label="Действия презентации">
+        <button class="control audio-start" id="audio-start" type="button">Начать презентацию</button>
+        <button class="control" id="open-menu" type="button" aria-expanded="false" aria-controls="slide-menu">Экраны</button>
+        <button class="control" id="open-tech" type="button">Технические детали</button>
+        <button class="icon-control" id="fullscreen" type="button" aria-label="Перейти в полноэкранный режим" title="Перейти в полноэкранный режим">↗</button>
+      </nav>
+    </header>
+
+    <aside class="slide-menu" id="slide-menu" hidden aria-label="Навигация по экранам"></aside>
+
+    <main class="stage" id="stage" tabindex="-1" aria-live="polite"></main>
+
+    <footer class="footerbar">
+      <div class="progress-track" aria-hidden="true"><span id="progress"></span></div>
+      <div class="footer-inner">
+        <span class="counter"><b id="current-number">01</b><span>/</span><span id="total-number">11</span></span>
+        <span class="screen-title" id="screen-title"></span>
+        <div class="audio-controls" role="group" aria-label="Управление озвучкой">
+          <button type="button" id="audio-play" aria-label="Воспроизвести озвучку" title="Воспроизвести"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="play-symbol" d="M8 5v14l11-7z"/><path class="pause-symbol" d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg></button>
+          <button type="button" id="audio-replay" aria-label="Повторить озвучку" title="Повторить"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.7 6.3A8 8 0 1 0 20 12h-2a6 6 0 1 1-1.8-4.3L13 11h8V3z"/></svg></button>
+          <button type="button" id="audio-mute" aria-label="Выключить звук" title="Выключить звук"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zm11.5-.5a5 5 0 0 1 0 7l1.4 1.4a7 7 0 0 0 0-9.8z"/><path class="mute-symbol" d="m16 9 5 6m0-6-5 6"/></svg></button>
+          <button type="button" id="audio-transcript" hidden aria-label="Показать текст выступления" aria-expanded="false" aria-controls="transcript-panel">Текст</button>
+          <button type="button" id="audio-autoplay" aria-label="Включить автопросмотр" aria-pressed="false">Авто</button>
+          <label class="audio-rate-label" for="audio-rate">Скорость</label>
+          <select id="audio-rate" aria-label="Скорость воспроизведения">
+            <option value="0.8">0.8×</option>
+            <option value="0.9">0.9×</option>
+            <option value="1" selected>1.0×</option>
+            <option value="1.1">1.1×</option>
+            <option value="1.2">1.2×</option>
+          </select>
+          <span class="audio-status" id="audio-status" role="status" aria-live="polite"></span>
+        </div>
+        <div class="navigation">
+          <button class="nav-button" id="prev" type="button" aria-label="Предыдущий экран">←</button>
+          <button class="nav-button next" id="next" type="button" aria-label="Следующий экран">→</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <section class="tech-overlay" id="tech-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="tech-title">
+    <div class="tech-sheet">
+      <div class="tech-head">
+        <div><h2 id="tech-title">Технологический стек</h2></div>
+        <button class="icon-control" id="close-tech" type="button" aria-label="Закрыть технические детали">×</button>
+      </div>
+      <div id="tech-content"></div>
+    </div>
+  </section>
+
+  <section class="rules-overlay" id="rules-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="rules-title">
+    <div class="rules-shell">
+      <header class="rules-head">
+        <div><span class="eyebrow">Качество входных артефактов</span><h2 id="rules-title">Правила подготовки БА и СА</h2></div>
+        <button class="icon-control" id="close-rules" type="button" aria-label="Закрыть правила">×</button>
+      </header>
+      <p class="rules-note">Статусы основаны на проверенных наборах данных и не являются аудитом всей документации компании.</p>
+      <div class="rules-layout">
+        <nav class="rules-categories" id="rules-categories" aria-label="Категории правил"></nav>
+        <section class="rules-list" id="rules-list" aria-live="polite"></section>
+      </div>
+    </div>
+  </section>
+
+  <aside class="transcript-panel" id="transcript-panel" hidden aria-labelledby="transcript-title">
+    <header><h2 id="transcript-title">Текст выступления</h2><button type="button" id="close-transcript" aria-label="Закрыть текст">×</button></header>
+    <div id="transcript-content" tabindex="0"></div>
+  </aside>
+
+  <script src="data/rules.js"></script>
+  <script src="data/sort-1998-demo.js"></script>
+  <script src="data/sort-1998-demo-tts.js"></script>
+  <script src="data/slides.js"></script>
+  <script src="data/pronunciation.js"></script>
+  <script src="data/tts.js"></script>
+  <script src="data/audio-manifest.js"></script>
+  <script src="js/audio-controller.js"></script>
+  <script src="js/presentation.js"></script>
+</body>
+</html>
