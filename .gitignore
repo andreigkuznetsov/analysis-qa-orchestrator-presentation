@@ -1,1 +1,14 @@
 build/
+
+# Local legacy/sample audio; production audio is defined by data/audio-manifest.js.
+/assets/audio/slide-01-speed-*.ogg
+/assets/audio/slide-01.ogg
+/assets/audio/slide-04/intro.ogg
+/assets/audio/slide-04/stage-*.ogg
+/assets/audio/slide-05/finding.ogg
+/assets/audio/slide-05/requirement.ogg
+/assets/audio/slide-06/ba-sa.ogg
+/assets/audio/slide-06/business.ogg
+/assets/audio/slide-08/*.ogg
+/assets/audio/slide-10/human-approval.ogg
+/assets/audio/slide-10/rules-origin.ogg
